@@ -2,7 +2,7 @@ bool showMenu = true;
 bool bFullChecked = false;
 int selectedFeatures = 1;
 android_app *i_App = 0;
-
+#include "XYZ/RInfo.h"
 unsigned int gpCrash = 0xfa91b9cd;
 static int crash(int randomval){
     volatile int *p = (int *)gpCrash;
