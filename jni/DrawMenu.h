@@ -327,6 +327,7 @@ void DrawMenu() {
                         ImGui::TableNextColumn();	ImGui::Checkbox(" Icon Hero", &Config.ESP.Player.HeroZ);
                         ImGui::TableNextColumn();	ImGui::Checkbox(" Visible Check", &Config.ESP.Player.Visible);
                         // ...inside the ESP Player table...
+                        ImGui::TableNextColumn(); ImGui::Checkbox(" Enemy Spell Cooldown", &Config.ESP.Player.CoolDown2);
                         ImGui::TableNextColumn(); ImGui::Checkbox(" Enemy Cooldown", &Config.ESP.Player.CoolDown);
 // ...existing code...
                         ImGui::TableNextColumn();	ImGui::Spacing();
@@ -335,6 +336,10 @@ void DrawMenu() {
                 }
                 if (ImGui::CollapsingHeader("Monster")) {
                 	if (ImGui::BeginTable("Monster", 2)) {
+                        // ...inside your menu drawing function, in the appropriate tab/panel...
+
+                        ImGui::TableNextColumn();   ImGui::Checkbox("Auto Retribution (Red/Blue Buffs)", &Aim.Helper.AutoRetribution.RedandBlue);
+                        ImGui::TableNextColumn();   ImGui::Checkbox("Auto Retribution (Lord/Turtle)", &Aim.Helper.AutoRetribution.TurtleLord);
                     	ImGui::TableNextColumn();	ImGui::Checkbox(" Monster Round", &Config.ESP.Monster.Rounded);
                         ImGui::TableNextColumn();	ImGui::Checkbox(" Monster Health", &Config.ESP.Monster.Health);
                         ImGui::TableNextColumn();	ImGui::Checkbox(" Monster Name", &Config.ESP.Monster.Name);
@@ -412,6 +417,28 @@ void DrawMenu() {
                 ImGui::EndTabItem();
             }
 			}
+            // ...inside the ImGui::BeginTabBar("Tab", ...) block...
+            if (ImGui::BeginTabItem("Room Info")) {
+                ImGui::BeginGroupPanel("Blue Team", ImVec2(-1.0f, 0.0f));
+                for (int i = 0; i < 10; ++i) {
+                    auto& player = RoomInfoZ.PlayerB[i];
+                    if (!player.Name.empty()) {
+                        ImGui::Text("Name: %s | HeroID: %d | Spell: %d", player.Name.c_str(), player.HeroID, player.Spell);
+                    }
+                }
+                ImGui::EndGroupPanel();
+
+                ImGui::BeginGroupPanel("Red Team", ImVec2(-1.0f, 0.0f));
+                for (int i = 0; i < 10; ++i) {
+                    auto& player = RoomInfoZ.PlayerR[i];
+                    if (!player.Name.empty()) {
+                        ImGui::Text("Name: %s | HeroID: %d | Spell: %d", player.Name.c_str(), player.HeroID, player.Spell);
+                    }
+                }
+                ImGui::EndGroupPanel();
+
+                ImGui::EndTabItem();
+            }
 			
 			static int SelectInfo = 0;
             static ImGuiTableFlags flags = ImGuiTableFlags_Resizable | ImGuiTableFlags_Reorderable | ImGuiTableFlags_Hideable | ImGuiTableFlags_BordersOuter | ImGuiTableFlags_BordersV;
@@ -464,7 +491,7 @@ void DrawMenu() {
                     ImGui::BeginGroupPanel("Key Info", ImVec2(-1.0f, 0.0f));
                     {
 						Text("Telegram Group: "); SameLine();
-                        TextColored(RGBA2ImVec4(176, 40, 40, 255), "@THEMAPHACK");
+                        TextColored(RGBA2ImVec4(176, 40, 40, 255), "@novuzu");
                         Text("Key Expired: "); SameLine();
                         ImGui::TextColored(RGBA2ImVec4(176, 40, 40, 255), expired.c_str());
                         Text("Key Slot: "); SameLine();
@@ -479,7 +506,7 @@ void DrawMenu() {
 						}
 						
 						Text("Telegram Channel: "); SameLine();
-						Text("@THEMAPHACK");
+						Text("@novuzu");
                     }
                     ImGui::EndGroupPanel();
                 }
