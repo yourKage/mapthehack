@@ -298,10 +298,7 @@ void DrawMenu() {
                     }
 					ImGui::Spacing();
 					ImGui::Spacing();
-					if (ImGui::Button("Get a Key", ImVec2(ImGui::GetContentRegionAvail().x, 0))) {
-        				openURL(g_vm, xyzBuyKey);
-  					}
-                    ImGui::TextColored(RGBA2ImVec4(255, 255, 0, 255), "%s", msg.c_str());
+					
                     ImGui::Spacing();
                 }
                 ImGui::EndGroupPanel();
