@@ -3,6 +3,10 @@ bool bFullChecked = false;
 int selectedFeatures = 1;
 android_app *i_App = 0;
 #pragma once
+#define RoomData_iCamp2     RoomData_iCamp()
+#define RoomData_lUid2      RoomData_lUid()
+#define RoomData_uiZoneId2  RoomData_uiZoneId()
+#define RoomData_sName2     RoomData_sName()
 
 struct PlayerDataZ {
     std::string Name;

@@ -1,10 +1,6 @@
 //method
 // Add these lines before using them in DrawMenu.h, or in a common header included before DrawMenu.h
 
-#define RoomData_iCamp2     RoomData_iCamp()
-#define RoomData_lUid2      RoomData_lUid()
-#define RoomData_uiZoneId2  RoomData_uiZoneId()
-#define RoomData_sName2     RoomData_sName()
 
 
 typedef unsigned long dword;
