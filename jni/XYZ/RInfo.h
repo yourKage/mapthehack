@@ -1,5 +1,10 @@
 #pragma once
+#include "XYZ/GameClass.h" // Make sure this is included for the offset functions
 
+#define RoomData_iCamp2      RoomData_iCamp()
+#define RoomData_lUid2       RoomData_lUid()
+#define RoomData_uiZoneId2   RoomData_uiZoneId()
+#define RoomData_sName2      RoomData_sName()
 struct PlayerDataZ {
     std::string Name;
     std::string UserID;
